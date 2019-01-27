@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+<link id="cssLink" rel=stylesheet type=text/css>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+	$(document)
+			.ready(
+					function() {
+						$("#header").load("/getHeader");
+
+						var randomNum = Math.random();
+						document.getElementById("cssLink").href = "/static/styles.css?v="
+								+ randomNum;
+
+					});
+
+	function onDeleteConf() {
+	 		$(location).attr('href', '/deleteItem/' + {{item.id}})
+	}
+
+	function onDelete() {
+		// 		$(location).attr('href', '/deleteItem/' + item.id)
+
+		showDeleteConf();
+		hideItemDetails();
+	}
+
+	function onDeleteRej() {
+		hideDeleteConf();
+		showItemDetails();
+	}
+
+	function showDeleteConf() {
+		document.getElementById("deleteConfDiv").style.display = "flex"
+	}
+
+	function hideDeleteConf() {
+		document.getElementById("deleteConfDiv").style.display = "none"
+	}
+
+	function showItemDetails() {
+		document.getElementById("itemInfoDiv").style.display = "block"
+		document.getElementById("itemControlDiv").style.display = "block"
+	}
+
+	function hideItemDetails() {
+		document.getElementById("itemInfoDiv").style.display = "none"
+		document.getElementById("itemControlDiv").style.display = "none"
+	}
+</script>
+</head>
+<body>
+	<header id="header"> </header>
+
+
+	<div class="root_container vertical">
+		<div id="itemInfoDiv" class="item_details_container">
+			<h2>{{item.name}}</h2>
+			<p>{{item.description}}</p>
+		</div>
+
+		<div id="itemControlDiv" class="item_modif_buttons">
+			<button>Edit</button>
+			<button onclick="onDelete()">Delete</button>
+		</div>
+
+		<div id="deleteConfDiv" class="delete_msg_confirm">
+			<p>Are you sure you want to remove this item</p>
+			<div class="item_modif_buttons">
+				<button onclick="onDeleteConf()">YES</button>
+				&nbsp;|&nbsp;
+				<button onclick="onDeleteRej()">NO</button>
+			</div>
+		</div>
+
+
+		<div id="itemInfoDiv" class="item_details_container">
+			<form
+				action="{{ url_for('editItem',item_id = item.id)}}"
+				method='post'>
+
+
+				<p>Name:</p>
+				<input type='text' size='30' name='name'
+					placeholder='{{item.name}}' value="{{item.name}}"> <input type='submit'
+					value='Edit'>
+			</form>
+
+		</div>
+
+
+	</div>
+</body>
+</html>

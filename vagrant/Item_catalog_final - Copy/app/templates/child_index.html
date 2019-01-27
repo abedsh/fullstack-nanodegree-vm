@@ -1,0 +1,78 @@
+
+{% extends "base_layout.html" %}
+{% block head %}
+  {{ super() }}
+  <script type="text/javascript">
+
+
+		$(document)
+			.ready(
+					function() {
+						// add event listener to table
+
+						if('{{current_user.is_authenticated}}'!== "False")
+						 {
+							 $("#add_item_btn").attr('style', 'display: inline');
+						 }
+					});
+
+
+  </script>
+{% endblock %}
+{% block content %}
+	<div class="root_container horizontal">
+		<div class="items_section grey">
+			<div class="center">
+				<h3 class="center_text">CATEGORIES</h3>
+			</div>
+			<div class="items_list">
+				{% for category in categories %}
+				<p>
+					<a href="{{url_for('categoryDetails',category_id=category.id)}}">{{
+						category.name }}</a>
+				</p>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="latest_items_section  grey">
+			<div class="center">
+				<h3 class="center_title">LATEST ITEMS</h3>
+				<img id="add_item_btn" class="add_item_icon" src="/static/plus_ic.png?" onclick="document.getElementById('div_add_form').style.display='block'" alt="Smiley face" height="26" width="26">
+			</div>
+			<div class="items_list">
+				{% for item in latestItems %}
+				<p>
+					<a href="{{url_for('itemDetails',item_id = item.id)}}">{{
+						item.name }}&nbsp;({{item.category.name}})</a>
+				</p>
+				{% endfor %}
+			</div>
+
+		</div>
+	</div>
+
+	<div id="div_add_form" class="modal">
+		<form id="add_item_form" class="modal-content" action="{{url_for('addItem')}}" method="post">
+			<div class="imgcontainer">
+				<h3>Add item</h3>
+				<span onclick="document.getElementById('div_add_form').style.display='none'" class="close" title="Close Modal">&times;</span>
+			</div>
+
+			<div class="popup-container">
+				<label><b>Name</b></label>
+				<input id="name" required="true" autocomplete="off" class="input_field" type="text" placeholder="Enter Name" name="name" required> <label><b>Category</b></label>
+				<select class="input_field" name="category" required>
+					{% for category in categories%}
+					<option value="{{category.id}}">{{category.name}}</option>
+					{% endfor %}
+
+				</select>
+				<label><b>Description</b></label> <input autocomplete="off" class="input_field" type="text" placeholder="Enter Description" name="description" required>
+
+				<button class="submit_item_button" onclick="onNewItemSubmit()" type="submit">SUBMIT</button>
+
+			</div>
+
+		</form>
+	</div>
+{% endblock %}

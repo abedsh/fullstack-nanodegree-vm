@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+<head>
+	{% block head %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!--LOAD PRE-REQUISITES FOR GOOGLE SIGN IN -->
+	<!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
+	<script src="{{ url_for('static', filename="js/login_gmail.js")}}"></script>
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+	<script src="//apis.google.com/js/platform.js?onload=start"> </script>
+
+	<script>
+		$(document)
+			.ready(
+					function() {
+						// add event listener to table
+
+						if('{{current_user.is_authenticated}}'!== "False")
+             {
+	             initLoggedInUser();
+             }
+
+					});
+
+	function onLoginSuccess(){
+	 $("#add_item_btn").attr('style', 'display: inline');
+	}
+
+
+	function initLoggedInUser() {
+		if('{{current_user.is_authenticated}}'!== "False")
+		{
+			console.log('{{current_user.picture}}');
+			console.log('{{current_user.name}}');
+
+			$('#signinButton').attr('style', 'display: none');
+			$('#loggedInUserDiv').attr('style', 'display: flex');
+			$("#userImg").attr("src",'{{current_user.picture}}');
+			$("#username").text("Welcome, "+'{{current_user.name}}');
+			var objRef = document.body;
+			var event = new Event('onLoginSuccess');
+			objRef.dispatchEvent(event);
+		}
+}
+
+function logout() {
+	console.log("logout here");
+
+	$.get( "/gdisconnect", function(data) {
+		console.log("Response is "+ data);
+		console.log("disconnect request was finished");
+		document.location.reload();
+
+		})
+		.fail(function() {
+			console.log( "error" );
+			alert("Could not logout!!!");
+		 });
+
+}
+
+
+</script>
+{% endblock %}
+</head>
+
+<body>
+	{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul id="flash_div" class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+		<script>
+  $("#flash_div").show().delay(4000).slideUp();
+		</script>
+  {% endif %}
+{% endwith %}
+	<header id="header">
+		<div class="header_group">
+			<div class="header">
+				<h1 class="app_title">Catalog Apps</h1>
+				<div id="signinButton" class="signinButton">
+					<span class="g-signin" data-scope="openid email"
+						data-clientid=""
+						data-redirecturi="postmessage" data-accesstype="offline"
+						data-cookiepolicy="single_host_origin"
+						data-callback="signInCallback" data-approvalprompt="force"> </span>
+				</div>
+				<div id="loggedInUserDiv" class="loggedInUserDiv">
+					<img id="userImg" class="usernameProfileImg"   />
+					<p id="username" class="usernameWelcomeTxt"/>
+					<p onclick="logout()" class="logoutTxt" />| Log out</p>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div id="content">{% block content %}{% endblock %}</div>
+
+
+</body>
+
+</html>

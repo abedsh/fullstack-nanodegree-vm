@@ -1,0 +1,54 @@
+
+<!doctype html>
+<html>
+<head>
+<link rel=stylesheet type=text/css
+	href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+
+	<header class="header">
+		<h1 class="app_title">Catalog Apps</h1>
+
+		<button>Login</button>
+	</header>
+
+	<div class="items_section">
+
+		
+	
+
+		{% for category in categories %}
+
+		<p>
+			<a >{{ category.name }}</a>
+		</p>
+
+		{% endfor %}
+
+	</div>
+
+	<div class="latest_items_section">
+
+
+
+		{% for item in latestItems %}
+
+
+
+		<p>
+			<a onclick="testClick( item.name )">{{ item.name }}</a>
+		</p>
+
+
+		{% endfor %}
+
+	</div>
+
+
+
+
+</body>
+
+</html>

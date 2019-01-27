@@ -1,0 +1,233 @@
+body {
+	font-family: sans-serif;
+	background-color: #ffffff;
+	margin: 0px;
+}
+
+.header_group {
+	background-color: #142242;
+	width: 100%;
+	padding:10px;
+}
+
+.usernameProfileImg{
+	width:30px;
+	height:30px;
+	display: inline;
+}
+
+.usernameWelcomeTxt{
+	color: #ffffff;
+	display: inline;
+	margin-top: 10px;
+  margin-left: 10px;
+	margin-bottom: 10px;
+	margin-right: 5px;
+}
+
+.logoutTxt{
+	color: #ffffff;
+  display:inline;
+	margin-left: 0px;
+	margin-right: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+
+.signinButton{
+	float:right;
+}
+
+.loggedInUserDiv{
+	display: none;
+	float:right;
+	justify-content: flex-start;
+}
+
+p{
+	margin: 10px;
+	word-wrap: break-word;
+}
+
+.header {
+	max-width: 980px;
+	height: 100%;
+	margin: auto;
+}
+
+.app_title {
+	color: #ffffff;
+	margin: 0px;
+	display: inline;
+}
+
+.login_button {
+	float: right;
+}
+
+.items_section {
+	flex-grow: 1;
+	display: inline-block;
+}
+
+.items_list {
+	margin-bottom:10px;
+	margin-right:10px;
+	margin-left:10px;
+	margin-top: 40px;
+}
+
+.delete_msg_confirm{
+	flex-grow: 1;
+	display: none;
+	flex-direction: column;
+}
+
+.item_details_container {
+	flex-grow: 1;
+	background-color: #00ff40;
+}
+
+.root_container {
+	max-width: 980px;
+	margin:auto;
+	padding: 10px;
+}
+
+.vertical {
+	display: flex;
+	flex-direction: column;
+}
+
+.grey {
+	background-color:#FCFCFC;
+}
+
+.horizontal {
+	display: flex;
+	flex-direction: row;
+}
+
+
+
+.add_item_icon{
+margin-top: 15px;
+cursor:pointer;
+margin-left:10px;
+display: none;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+
+.item_modif_buttons {
+	flex-grow: 1;
+	background-color: #00ff40;
+}
+
+.center{
+	display: flex;
+    justify-content: center;
+}
+
+.center_title {
+
+}
+
+.latest_items_section {
+	height: 500px;
+	flex-grow: 1;
+	display: inline-block;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+/* Full-width input fields */
+.input_field {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+
+
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+.popup-container {
+    padding: 16px;
+}
+
+.submit_item_button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.cancel_button {
+    background-color: #808080;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
